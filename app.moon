@@ -2,6 +2,7 @@ lapis = require "lapis"
 console = require "lapis.console"
 import respond_to, capture_errors from require "lapis.application"
 csrf = require "lapis.csrf"
+web_sanitize = require("web_sanitize")
 
 class extends lapis.Application
   @before_filter =>
@@ -12,7 +13,8 @@ class extends lapis.Application
       h1 "Hello lapis framework!"
       p "This is a 'hello world'-like application on lapis framework."
       if @session.email
-        h2 "Welcome, #{@session.email}"
+        email = web_sanitize.extract_text(@session.email)
+        h2 "Welcome, #{email}"
       else
         a href: @url_for("login"), "Login page"
 
