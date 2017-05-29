@@ -1,6 +1,6 @@
-FROM openresty/openresty:alpine
+FROM mileschou/lapis:alpine
 
-RUN mkdir /app
-ADD app.lua mime.types nginx.conf /app
+ADD . .
+RUN moonc *.moon
 
-CMD nginx -c /app/nginx.conf
+EXPOSE 8000

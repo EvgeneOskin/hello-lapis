@@ -1,5 +1,7 @@
 lapis = require "lapis"
+console = require "lapis.console"
 
 class extends lapis.Application
   "/": =>
-    "Welcome to Lapis #{require "lapis.version"}!"
+    "Hello World!"
+  "/console": console.make!
